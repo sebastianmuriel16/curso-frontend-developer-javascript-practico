@@ -1,15 +1,20 @@
 const menuEmail = document.querySelector(".navbar-email");
 const desktoMenu = document.querySelector(".desktop-menu");
 const MenuHamIcon = document.querySelector(".menu"); // menu hamburgesa de la vista movil
+const productDetailCloseIcon = document.querySelector(".product-detail-close");
 const Mobilemenu = document.querySelector(".mobile-menu");
 const menuCarritoAside = document.querySelector(".navbar-shopping-cart");
-const shoppingCartContainer = document.querySelector("#shoppingCartContainer")
-const cardsContainer = document.querySelector('.cards-container') 
+const shoppingCartContainer = document.querySelector("#shoppingCartContainer");
+const cardsContainer = document.querySelector(".cards-container");
+const productDetailContainer = document.querySelector('#productDetail');
+
+
 
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 MenuHamIcon.addEventListener('click', toggleMobileMenu);
 menuCarritoAside.addEventListener('click',toggleCarritoAside);
+productDetailCloseIcon.addEventListener('click',closeProductDetialAside);
 
 
 function toggleDesktopMenu(){
@@ -28,6 +33,8 @@ function toggleMobileMenu(){
     if(!isAsideClosed){
         shoppingCartContainer.classList.add('inactive');
     }
+    closeProductDetialAside(); //se llama a la funcion para no repetir el condicional de isAsideClosed
+
     Mobilemenu.classList.toggle("inactive")
 }
 
@@ -38,8 +45,24 @@ function toggleCarritoAside(){
         Mobilemenu.classList.add('inactive');
     }
 
+    const isProductDetailClosed = productDetailContainer.classList.contains('inactive');
+
+    if(!isProductDetailClosed){
+        productDetailContainer.classList.add('inactive');
+    }
+
     shoppingCartContainer.classList.toggle('inactive');
 }
+
+function openProductDetailAside(){
+    shoppingCartContainer.classList.add('inactive');
+    desktoMenu.classList.add('inactive');
+    productDetailContainer.classList.remove('inactive');
+}
+function closeProductDetialAside(){
+    productDetailContainer.classList.add('inactive');
+}
+
 
 const productList = []; // array con la informacion de los productos
 
@@ -80,6 +103,7 @@ function renderProducts(arr) {
     
         const productImg = document.createElement('img');
         productImg.setAttribute('src', product.image);
+        productImg.addEventListener('click', openProductDetailAside);
     
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
