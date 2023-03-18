@@ -3,7 +3,7 @@ const desktoMenu = document.querySelector(".desktop-menu");
 const MenuHamIcon = document.querySelector(".menu"); // menu hamburgesa de la vista movil
 const Mobilemenu = document.querySelector(".mobile-menu");
 const menuCarritoAside = document.querySelector(".navbar-shopping-cart");
-const aside = document.querySelector(".product-detail")
+const shoppingCartContainer = document.querySelector("#shoppingCartContainer")
 const cardsContainer = document.querySelector('.cards-container') 
 
 
@@ -13,20 +13,20 @@ menuCarritoAside.addEventListener('click',toggleCarritoAside);
 
 
 function toggleDesktopMenu(){
-    const isAsideClosed = aside.classList.contains('inactive');
+    const isAsideClosed = shoppingCartContainer.classList.contains('inactive');
 
     if(!isAsideClosed){
-        aside.classList.add("inactive")
+        shoppingCartContainer.classList.add("inactive")
     }
 
     desktoMenu.classList.toggle("inactive"); //toggle -> intercambiar entre quitar o agregar la clase inactive
 }
 
 function toggleMobileMenu(){
-    const isAsideClosed = aside.classList.contains('inactive');
+    const isAsideClosed = shoppingCartContainer.classList.contains('inactive');
 
     if(!isAsideClosed){
-        aside.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
     Mobilemenu.classList.toggle("inactive")
 }
@@ -38,7 +38,7 @@ function toggleCarritoAside(){
         Mobilemenu.classList.add('inactive');
     }
 
-    aside.classList.toggle('inactive');
+    shoppingCartContainer.classList.toggle('inactive');
 }
 
 const productList = []; // array con la informacion de los productos
